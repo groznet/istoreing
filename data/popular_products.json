@@ -1,0 +1,23 @@
+[
+    {
+        "name": "iPhone 17 Pro Max Silver 1TB",
+        "short_desc": "Флагман с дисплеем 6.9”, чипом A19 Pro и улучшенной камерой.",
+        "price": 179990,
+        "image": "/images/products/apple/iphone-17-pro-silver/featured.png",
+        "slug": "iphone-17-pro-max"
+    },
+    {
+        "name": "iPhone 17 Pro Deep Purple 512GB",
+        "short_desc": "Компактная версия с тем же A19 Pro и мощной камерой.",
+        "price": 159990,
+        "image": "/images/products/apple/iphone-17-pro-dp/featured.png",
+        "slug": "iphone-17-pro"
+    },
+    {
+        "name": "iPhone 16 Pro Max Titanium 512GB",
+        "short_desc": "Прошлогодний флагман с экраном 6.7” и отличным соотношением цены и возможностей.",
+        "price": 139990,
+        "image": "/images/products/apple/iphone-16-pro-max-tit/featured.png",
+        "slug": "iphone-16-pro-max"
+    }
+]

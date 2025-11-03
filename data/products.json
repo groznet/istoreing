@@ -1,0 +1,65 @@
+[
+    {
+        "name": "iPhone 17 Pro Max 1TB Natural Titanium",
+        "short_desc": "Флагман Apple с дисплеем 6.9”, чипом A19 Pro и корпусом из титана.",
+        "price": 229990,
+        "image": "/images/products/apple/iphone-17-pro-max-natural/featured.png",
+        "slug": "iphone-17-pro-max-natural"
+    },
+    {
+        "name": "iPhone 17 Pro 512GB Blue Titanium",
+        "short_desc": "Мощный iPhone 17 Pro с экраном 6.3” и улучшенной системой камер.",
+        "price": 199990,
+        "image": "/images/products/apple/iphone-17-pro-blue/featured.png",
+        "slug": "iphone-17-pro-blue"
+    },
+    {
+        "name": "iPhone 17 256GB Midnight",
+        "short_desc": "Стильный iPhone 17 с OLED-дисплеем и чипом A19 Bionic.",
+        "price": 149990,
+        "image": "/images/products/apple/iphone-17-midnight/featured.png",
+        "slug": "iphone-17-midnight"
+    },
+    {
+        "name": "iPhone 16 Pro Max 512GB Black Titanium",
+        "short_desc": "Прошлогодний флагман с дисплеем 6.7” и мощным чипом A18 Pro.",
+        "price": 179990,
+        "image": "/images/products/apple/iphone-16-pro-max-black/featured.png",
+        "slug": "iphone-16-pro-max-black"
+    },
+    {
+        "name": "iPhone 16 Pro 256GB White Titanium",
+        "short_desc": "Компактный и мощный iPhone с чипом A18 Pro и ProMotion-дисплеем.",
+        "price": 159990,
+        "image": "/images/products/apple/iphone-16-pro-white/featured.png",
+        "slug": "iphone-16-pro-white"
+    },
+    {
+        "name": "iPhone 16 128GB Pink",
+        "short_desc": "Современный дизайн, яркие цвета и оптимальная производительность.",
+        "price": 119990,
+        "image": "/images/products/apple/iphone-16-pink/featured.png",
+        "slug": "iphone-16-pink"
+    },
+    {
+        "name": "iPhone 15 Pro Max 256GB Natural Titanium",
+        "short_desc": "Флагман 2024 года с A17 Pro и поддержкой 5x зума.",
+        "price": 149990,
+        "image": "/images/products/apple/iphone-15-pro-max-natural/featured.png",
+        "slug": "iphone-15-pro-max-natural"
+    },
+    {
+        "name": "iPhone 15 128GB Blue",
+        "short_desc": "Быстрый, стильный и надёжный iPhone с отличной камерой.",
+        "price": 99990,
+        "image": "/images/products/apple/iphone-15-blue/featured.png",
+        "slug": "iphone-15-blue"
+    },
+    {
+        "name": "iPhone SE 4 128GB Red",
+        "short_desc": "Компактный смартфон с мощным процессором и классическим дизайном.",
+        "price": 69990,
+        "image": "/images/products/apple/iphone-se-4-red/featured.png",
+        "slug": "iphone-se-4-red"
+    }
+]
