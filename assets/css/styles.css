@@ -28,3 +28,25 @@ h1, h2, h3, h4, h5, h6, .heading {
 .bg-secondary { background-color: var(--color-secondary); }
 .bg-dark { background-color: var(--color-dark); }
 .bg-light { background-color: var(--color-light); }
+
+body {
+  /* 1. Specify the image */
+  background-image: url('/images/dots.jpg');
+
+  /* 2. Repeat the image only vertically */
+  background-repeat: repeat-y;
+  background-size: cover;
+  background-position: center;
+
+  /* 3. Ensure the repeated pattern covers the whole height/width of the body.
+     Note: 'cover' might stretch the pattern tile. For an actual repeating *pattern*,
+     you usually rely on the tile size and 'repeat-y' or 'repeat'.
+     If you want the pattern to fill the screen *without* repeating, but scaled up: */
+  /* background-size: cover; */
+
+  /* For a tile pattern, you usually omit background-size or use: */
+  background-size: auto; /* Uses the actual size of the pattern image */
+
+  /* Optional: Fix the background image so it doesn't scroll with the content */
+  background-attachment: fixed;
+}
