@@ -13,7 +13,6 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <script>
         tailwind.config = {
             theme: {
@@ -46,8 +45,7 @@
     
     <!-- Logo -->
     <a href="/" class="flex items-center space-x-2">
-      <img src="images/logo.png" alt="Istoring Logo" class="h-10 w-auto">
-      
+      <img src="images/logo.png" alt="Istoring Logo" class="w-auto">
     </a>
 
     <!-- Navigation -->
@@ -56,7 +54,7 @@
       <a href="/catalog.html" class="hover:text-blue-600 transition-colors">Каталог</a>
       <a href="/promotions.html" class="hover:text-blue-600 transition-colors">Акции</a>
       <a href="/blog.html" class="hover:text-blue-600 transition-colors">Блог</a>
-      <a href="/faq.html" class="hover:text-blue-600 transition-colors">Блог</a>
+      <a href="/faq.html" class="hover:text-blue-600 transition-colors">FAQ</a>
       <a href="/about.html" class="hover:text-blue-600 transition-colors">О магазине</a>
       <a href="/contact.html" class="hover:text-blue-600 transition-colors">Контакты</a>
     </nav>
@@ -105,7 +103,7 @@
 </section>
 <!-- END SECTION: Page Header -->
 
-<!-- START SECTION: Filters / Categories (brand, price, features) -->
+<!-- START SECTION: Filters / Categories -->
 <section class="bg-white py-8 border-b border-gray-200">
   <div class="container mx-auto px-4 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
 
@@ -125,9 +123,9 @@
     <!-- Price Filter -->
     <div class="flex flex-col sm:flex-row sm:items-center gap-2">
       <label class="text-gray-700 font-medium">Цена:</label>
-      <input type="number" placeholder="От" class="border border-gray-300 rounded-lg px-3 py-2 w-24 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <input type="number" id="price-min" placeholder="От" class="border border-gray-300 rounded-lg px-3 py-2 w-24 focus:outline-none focus:ring-2 focus:ring-blue-500">
       <span class="mx-2 text-gray-600">-</span>
-      <input type="number" placeholder="До" class="border border-gray-300 rounded-lg px-3 py-2 w-24 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <input type="number" id="price-max" placeholder="До" class="border border-gray-300 rounded-lg px-3 py-2 w-24 focus:outline-none focus:ring-2 focus:ring-blue-500">
     </div>
 
     <!-- Features Filter -->
@@ -136,94 +134,54 @@
       <select id="filter-features" class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
         <option value="">Все</option>
         <option value="dual-sim">Dual SIM</option>
+        <option value="esim">eSIM</option>
         <option value="5g">5G</option>
         <option value="waterproof">Влагозащита</option>
-        <option value="wireless-charging">Беспроводная зарядка</option>
       </select>
     </div>
 
     <!-- Apply / Reset Button -->
     <div class="flex gap-2 mt-4 lg:mt-0">
-      <button class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
+      <button id="apply-filters" class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
         Применить
       </button>
-      <button class="px-4 py-2 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-100 transition">
+      <button id="reset-filters" class="px-4 py-2 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-100 transition">
         Сбросить
       </button>
     </div>
 
   </div>
 </section>
-<!-- END SECTION: Filters / Categories (brand, price, features) -->
+<!-- END SECTION: Filters -->
 
-<!-- START SECTION: Popular Products / Top Picks -->
+<!-- START SECTION: Products Grid with Pagination -->
 <section class="bg-white py-16">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-gray-800 text-center mb-12">
-      Популярные товары
-    </h2>
+    
+    <!-- Results Count -->
+    <div class="mb-6 flex justify-between items-center">
+      <p id="results-count" class="text-gray-600">Загрузка товаров...</p>
+      <select id="per-page" class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option value="12">12 на странице</option>
+        <option value="24">24 на странице</option>
+        <option value="36">36 на странице</option>
+        <option value="48">48 на странице</option>
+      </select>
+    </div>
 
     <!-- Product Grid -->
-    <div id="popular-product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"></div>
-
-    <div class="mt-12 flex justify-center">
-      <a href="/catalog.html" class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
-        Смотреть весь каталог
-      </a>
+    <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 min-h-[400px]">
+      <!-- Products will be loaded here -->
     </div>
-  </div>
-</section>
 
-<script>
-fetch('/data/products.json')
-    .then(res => res.json())
-    .then(products => {
-        console.log('Popular products:', products);
-
-        // Pick first 8 popular products
-        const popular = products.slice(0, 8);
-
-        const container = document.getElementById('popular-product-list');
-        container.innerHTML = popular.map(p => `
-            <div class="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden flex flex-col">
-                <div class="relative">
-                    <img src="${p.image}" alt="${p.name}" class="w-full object-cover">
-                    <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded">
-                        Новинка
-                    </span>
-                </div>
-                <div class="p-4 flex flex-col flex-1">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">${p.name}</h3>
-                    <p class="text-gray-600 mb-4">${p.short_desc}</p>
-                    <div class="mt-auto flex items-center justify-between">
-                        <span class="text-xl font-bold text-gray-800">${p.price.toLocaleString('ru-RU')} ₽</span>
-                        <a href="/products/${p.slug}.html" class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">
-                            Подробнее
-                        </a>
-                    </div>
-                </div>
-            </div>
-        `).join('');
-    })
-    .catch(err => console.error('Ошибка загрузки популярных товаров:', err));
-</script>
-
-<!-- START SECTION: Pagination / Infinite Scroll -->
-<section class="bg-white py-8">
-  <div class="container mx-auto px-4">
-
-    <!-- Pagination Placeholder -->
-    <div class="mt-12 flex justify-center space-x-2">
-      <button class="px-4 py-2 bg-white border border-gray-300 rounded">1</button>
-      <button class="px-4 py-2 bg-white border border-gray-300 rounded">2</button>
-      <button class="px-4 py-2 bg-white border border-gray-300 rounded">3</button>
-      <button class="px-4 py-2 bg-white border border-gray-300 rounded">→</button>
+    <!-- Pagination -->
+    <div id="pagination" class="mt-12 flex justify-center items-center space-x-2">
+      <!-- Pagination buttons will be generated here -->
     </div>
 
   </div>
 </section>
-<!-- END SECTION: Pagination / Infinite Scroll -->
-
+<!-- END SECTION: Products Grid -->
 
 <!-- START SECTION: Footer -->
 <footer class="bg-gray-900 text-gray-300 py-12">
@@ -232,7 +190,7 @@ fetch('/data/products.json')
     <!-- Logo & About -->
     <div class="space-y-4">
       <a href="/" class="flex items-center space-x-2">
-        <img src="images/logo.png" alt="Istoring Logo" class="h-10 w-auto">
+        <img src="images/logo.png" alt="Istoring Logo" class="w-auto">
         <span class="text-xl font-semibold text-white">Istoring</span>
       </a>
       <p class="text-gray-400 text-sm">
@@ -257,8 +215,8 @@ fetch('/data/products.json')
     <div>
       <h3 class="text-white font-semibold mb-4">Контакты</h3>
       <ul class="space-y-2 text-sm">
-        <li>Телефон: <a href="tel:+79991234567" class="hover:text-white transition">+7 (999) 123-45-67</a></li>
-        <li>WhatsApp: <a href="https://wa.me/79991234567" target="_blank" class="hover:text-white transition">Написать</a></li>
+        <li>Телефон: <a href="tel:+79286070606" class="hover:text-white transition">+7 (999) 123-45-67</a></li>
+        <li>WhatsApp: <a href="https://wa.me/79286070606" target="_blank" class="hover:text-white transition">Написать</a></li>
         <li>Telegram: <a href="https://t.me/istoring_support" target="_blank" class="hover:text-white transition">Написать</a></li>
         <li>Email: <a href="mailto:info@istoring.ru" class="hover:text-white transition">info@istoring.ru</a></li>
       </ul>
@@ -271,6 +229,7 @@ fetch('/data/products.json')
         <a href="#" class="hover:text-white transition"><img src="images/icons/facebook.png" alt="Facebook" class="h-5 w-5"></a>
         <a href="#" class="hover:text-white transition"><img src="images/icons/instagram.png" alt="Instagram" class="h-5 w-5"></a>
         <a href="#" class="hover:text-white transition"><img src="images/icons/telegram.png" alt="Telegram" class="h-5 w-5"></a>
+        <a href="https://wa.me/79286070606" target="_blank" class="hover:text-white transition"><img src="images/icons/whatsapp.png" alt="WhatsApp" class="h-5 w-5"></a>
       </div>
       <p class="text-gray-400 text-sm">
         Подпишитесь на новости: 
@@ -285,7 +244,265 @@ fetch('/data/products.json')
   </div>
 </footer>
 <!-- END SECTION: Footer -->
+
+<!-- Catalog Pagination Script -->
+<script>
+// Catalog with Pagination and Filters
+class CatalogManager {
+  constructor() {
+    this.allProducts = [];
+    this.filteredProducts = [];
+    this.currentPage = 1;
+    this.itemsPerPage = 12;
     
+    this.init();
+  }
+
+  async init() {
+    await this.loadProducts();
+    this.setupEventListeners();
+    this.renderProducts();
+  }
+
+  async loadProducts() {
+    try {
+      const response = await fetch('/data/products.json');
+      this.allProducts = await response.json();
+      this.filteredProducts = [...this.allProducts];
+      console.log('Loaded products:', this.allProducts.length);
+    } catch (error) {
+      console.error('Error loading products:', error);
+      document.getElementById('product-list').innerHTML = 
+        '<div class="col-span-full text-center text-red-600">Ошибка загрузки товаров. Попробуйте обновить страницу.</div>';
+    }
+  }
+
+  setupEventListeners() {
+    // Per page selector
+    document.getElementById('per-page').addEventListener('change', (e) => {
+      this.itemsPerPage = parseInt(e.target.value);
+      this.currentPage = 1;
+      this.renderProducts();
+    });
+
+    // Apply filters
+    document.getElementById('apply-filters').addEventListener('click', () => {
+      this.applyFilters();
+    });
+
+    // Reset filters
+    document.getElementById('reset-filters').addEventListener('click', () => {
+      this.resetFilters();
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  }
+
+  applyFilters() {
+    const brand = document.getElementById('filter-brand').value.toLowerCase();
+    const priceMin = parseFloat(document.getElementById('price-min').value) || 0;
+    const priceMax = parseFloat(document.getElementById('price-max').value) || Infinity;
+    const features = document.getElementById('filter-features').value.toLowerCase();
+
+    this.filteredProducts = this.allProducts.filter(product => {
+      // Brand filter
+      if (brand && !product.name.toLowerCase().includes(brand)) {
+        return false;
+      }
+
+      // Price filter
+      if (product.price < priceMin || product.price > priceMax) {
+        return false;
+      }
+
+      // Features filter
+      if (features) {
+        const productName = product.name.toLowerCase();
+        if (features === 'esim' && !productName.includes('esim')) {
+          return false;
+        }
+        if (features === 'dual-sim' && !productName.includes('physical sim')) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+
+    this.currentPage = 1;
+    this.renderProducts();
+  }
+
+  resetFilters() {
+    document.getElementById('filter-brand').value = '';
+    document.getElementById('price-min').value = '';
+    document.getElementById('price-max').value = '';
+    document.getElementById('filter-features').value = '';
+    
+    this.filteredProducts = [...this.allProducts];
+    this.currentPage = 1;
+    this.renderProducts();
+  }
+
+  renderProducts() {
+    const container = document.getElementById('product-list');
+    const totalPages = Math.ceil(this.filteredProducts.length / this.itemsPerPage);
+    
+    // Calculate start and end indices
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    const productsToShow = this.filteredProducts.slice(startIndex, endIndex);
+
+    // Update results count
+    document.getElementById('results-count').textContent = 
+      `Показано ${startIndex + 1}-${Math.min(endIndex, this.filteredProducts.length)} из ${this.filteredProducts.length} товаров`;
+
+    // Render products
+    if (productsToShow.length === 0) {
+      container.innerHTML = '<div class="col-span-full text-center text-gray-600 py-12">Товары не найдены. Попробуйте изменить фильтры.</div>';
+    } else {
+      container.innerHTML = productsToShow.map(p => `
+        <div class="bg-white rounded-lg shadow hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group">
+          <div class="relative overflow-hidden">
+            <img src="${p.image}" alt="${p.name}" class="w-full h-64 object-contain p-4 group-hover:scale-105 transition-transform duration-300">
+            ${p.name.includes('17') ? '<span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded">Новинка</span>' : ''}
+            ${p.name.includes('eSIM') ? '<span class="absolute top-3 right-3 bg-blue-500 text-white text-xs font-semibold px-2 py-1 rounded">eSIM</span>' : ''}
+          </div>
+          <div class="p-4 flex flex-col flex-1">
+            <h3 class="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">${p.name}</h3>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2 flex-1">${p.short_desc}</p>
+            <div class="mt-auto">
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-2xl font-bold text-gray-800">${p.price.toLocaleString('ru-RU')} ₽</span>
+              </div>
+              <div class="flex gap-2">
+                <a href="/products/${p.slug}.html" class="flex-1 px-4 py-2 bg-blue-600 text-white text-center rounded-lg hover:bg-blue-700 transition text-sm font-semibold">
+                  Подробнее
+                </a>
+                <button class="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition text-sm font-semibold">
+                  В корзину
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Render pagination
+    this.renderPagination(totalPages);
+
+    // Scroll to top of products
+    document.getElementById('product-list').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  renderPagination(totalPages) {
+    const container = document.getElementById('pagination');
+    
+    if (totalPages <= 1) {
+      container.innerHTML = '';
+      return;
+    }
+
+    let html = '';
+
+    // Previous button
+    html += `
+      <button 
+        onclick="catalog.goToPage(${this.currentPage - 1})" 
+        ${this.currentPage === 1 ? 'disabled' : ''}
+        class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        ←
+      </button>
+    `;
+
+    // Page numbers
+    const maxVisible = 7;
+    let startPage = Math.max(1, this.currentPage - Math.floor(maxVisible / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+
+    if (endPage - startPage < maxVisible - 1) {
+      startPage = Math.max(1, endPage - maxVisible + 1);
+    }
+
+    // First page
+    if (startPage > 1) {
+      html += `
+        <button onclick="catalog.goToPage(1)" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+          1
+        </button>
+      `;
+      if (startPage > 2) {
+        html += '<span class="px-2 py-2 text-gray-500">...</span>';
+      }
+    }
+
+    // Middle pages
+    for (let i = startPage; i <= endPage; i++) {
+      html += `
+        <button 
+          onclick="catalog.goToPage(${i})" 
+          class="px-4 py-2 border rounded-lg transition ${
+            i === this.currentPage 
+              ? 'bg-blue-600 text-white border-blue-600' 
+              : 'border-gray-300 hover:bg-gray-100'
+          }"
+        >
+          ${i}
+        </button>
+      `;
+    }
+
+    // Last page
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        html += '<span class="px-2 py-2 text-gray-500">...</span>';
+      }
+      html += `
+        <button onclick="catalog.goToPage(${totalPages})" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+          ${totalPages}
+        </button>
+      `;
+    }
+
+    // Next button
+    html += `
+      <button 
+        onclick="catalog.goToPage(${this.currentPage + 1})" 
+        ${this.currentPage === totalPages ? 'disabled' : ''}
+        class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        →
+      </button>
+    `;
+
+    container.innerHTML = html;
+  }
+
+  goToPage(page) {
+    const totalPages = Math.ceil(this.filteredProducts.length / this.itemsPerPage);
+    if (page < 1 || page > totalPages) return;
+    
+    this.currentPage = page;
+    this.renderProducts();
+  }
+}
+
+// Initialize catalog
+let catalog;
+document.addEventListener('DOMContentLoaded', () => {
+  catalog = new CatalogManager();
+});
+</script>
+
 <script src="assets/js/main.js"></script>
 
 </body>

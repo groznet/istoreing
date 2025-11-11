@@ -1,65 +1,422 @@
 [
     {
-        "name": "iPhone 17 Pro Max 1TB Natural Titanium",
-        "short_desc": "Флагман Apple с дисплеем 6.9”, чипом A19 Pro и корпусом из титана.",
-        "price": 229990,
-        "image": "/images/products/apple/iphone-17-pro-max-natural/featured.png",
-        "slug": "iphone-17-pro-max-natural"
+        "name": "Apple iPhone 13 128GB Black",
+        "short_desc": "Проверенный временем iPhone с чипом A15 Bionic и двойной камерой.",
+        "price": 39900,
+        "image": "/images/products/apple/iphone-13-black/featured.jpg",
+        "slug": "iphone-13-black"
     },
     {
-        "name": "iPhone 17 Pro 512GB Blue Titanium",
-        "short_desc": "Мощный iPhone 17 Pro с экраном 6.3” и улучшенной системой камер.",
-        "price": 199990,
-        "image": "/images/products/apple/iphone-17-pro-blue/featured.png",
-        "slug": "iphone-17-pro-blue"
+        "name": "Apple iPhone 13 128GB Starlight",
+        "short_desc": "Элегантный iPhone 13 в светлом корпусе с мощным процессором.",
+        "price": 39900,
+        "image": "/images/products/apple/iphone-13-starlight/featured.jpg",
+        "slug": "iphone-13-starlight"
     },
     {
-        "name": "iPhone 17 256GB Midnight",
-        "short_desc": "Стильный iPhone 17 с OLED-дисплеем и чипом A19 Bionic.",
-        "price": 149990,
-        "image": "/images/products/apple/iphone-17-midnight/featured.png",
-        "slug": "iphone-17-midnight"
+        "name": "Apple iPhone 14 128GB Blue",
+        "short_desc": "Надёжный iPhone 14 с улучшенными камерами и функцией обнаружения аварий.",
+        "price": 44900,
+        "image": "/images/products/apple/iphone-14-blue/featured.jpg",
+        "slug": "iphone-14-blue"
     },
     {
-        "name": "iPhone 16 Pro Max 512GB Black Titanium",
-        "short_desc": "Прошлогодний флагман с дисплеем 6.7” и мощным чипом A18 Pro.",
-        "price": 179990,
-        "image": "/images/products/apple/iphone-16-pro-max-black/featured.png",
-        "slug": "iphone-16-pro-max-black"
+        "name": "Apple iPhone 14 128GB Midnight",
+        "short_desc": "Стильный iPhone 14 в тёмном корпусе с чипом A15 Bionic.",
+        "price": 44900,
+        "image": "/images/products/apple/iphone-14-midnight/featured.jpg",
+        "slug": "iphone-14-midnight"
     },
     {
-        "name": "iPhone 16 Pro 256GB White Titanium",
-        "short_desc": "Компактный и мощный iPhone с чипом A18 Pro и ProMotion-дисплеем.",
-        "price": 159990,
-        "image": "/images/products/apple/iphone-16-pro-white/featured.png",
-        "slug": "iphone-16-pro-white"
+        "name": "Apple iPhone 14 128GB Starlight",
+        "short_desc": "Светлый iPhone 14 с отличной камерой и долгим временем работы.",
+        "price": 44000,
+        "image": "/images/products/apple/iphone-14-starlight/featured.jpg",
+        "slug": "iphone-14-starlight"
     },
     {
-        "name": "iPhone 16 128GB Pink",
-        "short_desc": "Современный дизайн, яркие цвета и оптимальная производительность.",
-        "price": 119990,
-        "image": "/images/products/apple/iphone-16-pink/featured.png",
-        "slug": "iphone-16-pink"
+        "name": "Apple iPhone 15 128GB Black",
+        "short_desc": "Современный iPhone 15 с Dynamic Island и USB-C разъёмом.",
+        "price": 48900,
+        "image": "/images/products/apple/iphone-15-black/featured.jpg",
+        "slug": "iphone-15-black"
     },
     {
-        "name": "iPhone 15 Pro Max 256GB Natural Titanium",
-        "short_desc": "Флагман 2024 года с A17 Pro и поддержкой 5x зума.",
-        "price": 149990,
-        "image": "/images/products/apple/iphone-15-pro-max-natural/featured.png",
-        "slug": "iphone-15-pro-max-natural"
-    },
-    {
-        "name": "iPhone 15 128GB Blue",
+        "name": "Apple iPhone 15 128GB Blue",
         "short_desc": "Быстрый, стильный и надёжный iPhone с отличной камерой.",
-        "price": 99990,
-        "image": "/images/products/apple/iphone-15-blue/featured.png",
+        "price": 48900,
+        "image": "/images/products/apple/iphone-15-blue/featured.jpg",
         "slug": "iphone-15-blue"
     },
     {
-        "name": "iPhone SE 4 128GB Red",
-        "short_desc": "Компактный смартфон с мощным процессором и классическим дизайном.",
-        "price": 69990,
-        "image": "/images/products/apple/iphone-se-4-red/featured.png",
-        "slug": "iphone-se-4-red"
+        "name": "Apple iPhone 15 128GB Pink",
+        "short_desc": "Яркий iPhone 15 с чипом A16 Bionic и улучшенной камерой 48MP.",
+        "price": 48900,
+        "image": "/images/products/apple/iphone-15-pink/featured.jpg",
+        "slug": "iphone-15-pink"
+    },
+    {
+        "name": "Apple iPhone 16 128GB Black",
+        "short_desc": "Новый iPhone 16 с чипом A18 и поддержкой Apple Intelligence.",
+        "price": 56900,
+        "image": "/images/products/apple/iphone-16-black/featured.jpg",
+        "slug": "iphone-16-black"
+    },
+    {
+        "name": "Apple iPhone 16 128GB Pink",
+        "short_desc": "Современный дизайн, яркие цвета и оптимальная производительность.",
+        "price": 56900,
+        "image": "/images/products/apple/iphone-16-pink/featured.jpg",
+        "slug": "iphone-16-pink"
+    },
+    {
+        "name": "Apple iPhone 16 128GB Teal",
+        "short_desc": "Стильный iPhone 16 в бирюзовом цвете с мощным процессором A18.",
+        "price": 56900,
+        "image": "/images/products/apple/iphone-16-teal/featured.jpg",
+        "slug": "iphone-16-teal"
+    },
+    {
+        "name": "Apple iPhone 16 128GB White",
+        "short_desc": "Классический белый iPhone 16 с улучшенными камерами.",
+        "price": 56900,
+        "image": "/images/products/apple/iphone-16-white/featured.jpg",
+        "slug": "iphone-16-white"
+    },
+    {
+        "name": "Apple iPhone 16 256GB Black",
+        "short_desc": "Apple iPhone 16 с увеличенной памятью для всех ваших фото и видео.",
+        "price": 66900,
+        "image": "/images/products/apple/iphone-16-256-black/featured.jpg",
+        "slug": "iphone-16-256-black"
+    },
+    {
+        "name": "Apple iPhone 16 256GB White",
+        "short_desc": "Просторная память 256GB в элегантном белом корпусе.",
+        "price": 66900,
+        "image": "/images/products/apple/iphone-16-256-white/featured.jpg",
+        "slug": "iphone-16-256-white"
+    },
+    {
+        "name": "Apple iPhone 16 E 128GB White",
+        "short_desc": "Доступный iPhone 16 E с основными функциями флагмана.",
+        "price": 44900,
+        "image": "/images/products/apple/iphone-16-e-white/featured.jpg",
+        "slug": "iphone-16-e-white"
+    },
+    {
+        "name": "Apple iPhone 16 Pro 256GB Desert Titanium",
+        "short_desc": "Профессиональный iPhone с титановым корпусом и чипом A18 Pro.",
+        "price": 105900,
+        "image": "/images/products/apple/iphone-16-pro-desert/featured.jpg",
+        "slug": "iphone-16-pro-desert"
+    },
+    {
+        "name": "Apple iPhone 16 Pro 256GB Black Titanium",
+        "short_desc": "Мощный iPhone 16 Pro в чёрном титановом корпусе с ProMotion.",
+        "price": 105900,
+        "image": "/images/products/apple/iphone-16-pro-black/featured.jpg",
+        "slug": "iphone-16-pro-black"
+    },
+    {
+        "name": "Apple iPhone 16 Pro Max 256GB Desert Titanium",
+        "short_desc": "Максимальный размер экрана 6.9 с чипом A18 Pro и титановым корпусом.",
+        "price": 107900,
+        "image": "/images/products/apple/iphone-16-pro-max-desert/featured.jpg",
+        "slug": "iphone-16-pro-max-desert"
+    },
+    {
+        "name": "Apple iPhone 16 Pro Max 256GB Natural Titanium",
+        "short_desc": "Флагманский iPhone с естественным титановым покрытием.",
+        "price": 107900,
+        "image": "/images/products/apple/iphone-16-pro-max-natural/featured.jpg",
+        "slug": "iphone-16-pro-max-natural"
+    },
+    {
+        "name": "Apple iPhone 16 Pro Max 256GB Black Titanium",
+        "short_desc": "Топовый iPhone в чёрном титане с максимальной производительностью.",
+        "price": 107900,
+        "image": "/images/products/apple/iphone-16-pro-max-black/featured.jpg",
+        "slug": "iphone-16-pro-max-black"
+    },
+    {
+        "name": "Apple iPhone 16 Pro Max 512GB Desert Titanium",
+        "short_desc": "Увеличенная память 512GB в премиальном титановом корпусе.",
+        "price": 119900,
+        "image": "/images/products/apple/iphone-16-pro-max-512-desert/featured.jpg",
+        "slug": "iphone-16-pro-max-512-desert"
+    },
+    {
+        "name": "Apple iPhone 17 256GB Black",
+        "short_desc": "Новейший iPhone 17 с чипом A19 Bionic и улучшенной камерой.",
+        "price": 79900,
+        "image": "/images/products/apple/iphone-17-black/featured.jpg",
+        "slug": "iphone-17-black"
+    },
+    {
+        "name": "Apple iPhone 17 256GB White",
+        "short_desc": "Стильный iPhone 17 в белом корпусе с OLED-дисплеем.",
+        "price": 79900,
+        "image": "/images/products/apple/iphone-17-white/featured.jpg",
+        "slug": "iphone-17-white"
+    },
+    {
+        "name": "Apple iPhone 17 Air 256GB Gold",
+        "short_desc": "Ультратонкий iPhone 17 Air в золотом цвете весом всего 160 грамм.",
+        "price": 78900,
+        "image": "/images/products/apple/iphone-17-air-gold/featured.jpg",
+        "slug": "iphone-17-air-gold"
+    },
+    {
+        "name": "Apple iPhone 17 Air 256GB Sky Blue",
+        "short_desc": "Лёгкий и изящный iPhone 17 Air в небесно-голубом оттенке.",
+        "price": 78900,
+        "image": "/images/products/apple/iphone-17-air-sky-blue/featured.jpg",
+        "slug": "iphone-17-air-sky-blue"
+    },
+    {
+        "name": "Apple iPhone 17 Air 256GB White",
+        "short_desc": "Революционно тонкий дизайн в классическом белом исполнении.",
+        "price": 78900,
+        "image": "/images/products/apple/iphone-17-air-white/featured.jpg",
+        "slug": "iphone-17-air-white"
+    },
+    {
+        "name": "Apple iPhone 17 Pro 256GB Orange Titanium",
+        "short_desc": "Apple iPhone 17 Pro с физической SIM-картой в оранжевом титане.",
+        "price": 119900,
+        "image": "/images/products/apple/iphone-17-pro-orange-sim/featured.jpg",
+        "slug": "iphone-17-pro-orange-sim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro 256GB Silver Titanium",
+        "short_desc": "Серебристый титановый iPhone 17 Pro с поддержкой физической SIM.",
+        "price": 119900,
+        "image": "/images/products/apple/iphone-17-pro-silver-sim/featured.jpg",
+        "slug": "iphone-17-pro-silver-sim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro 256GB Blue Titanium",
+        "short_desc": "Синий титановый корпус и физическая SIM для максимальной гибкости.",
+        "price": 119900,
+        "image": "/images/products/apple/iphone-17-pro-blue-sim/featured.jpg",
+        "slug": "iphone-17-pro-blue-sim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro 512GB Orange Titanium",
+        "short_desc": "Удвоенная память 512GB в оранжевом титане с физической SIM.",
+        "price": 139900,
+        "image": "/images/products/apple/iphone-17-pro-512-orange-sim/featured.jpg",
+        "slug": "iphone-17-pro-512-orange-sim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro 512GB Silver Titanium",
+        "short_desc": "Просторная память и серебристый титан с поддержкой физической SIM.",
+        "price": 139900,
+        "image": "/images/products/apple/iphone-17-pro-512-silver-sim/featured.jpg",
+        "slug": "iphone-17-pro-512-silver-sim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro 512GB Blue Titanium",
+        "short_desc": "Максимум памяти в синем титане с физической SIM-картой.",
+        "price": 139900,
+        "image": "/images/products/apple/iphone-17-pro-512-blue-sim/featured.jpg",
+        "slug": "iphone-17-pro-512-blue-sim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro 1TB Orange Titanium",
+        "short_desc": "Терабайт памяти для профессионалов в оранжевом титане.",
+        "price": 149900,
+        "image": "/images/products/apple/iphone-17-pro-1tb-orange-sim/featured.jpg",
+        "slug": "iphone-17-pro-1tb-orange-sim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro 1TB Silver Titanium",
+        "short_desc": "Максимальная конфигурация 1TB в серебристом титане с физической SIM.",
+        "price": 149900,
+        "image": "/images/products/apple/iphone-17-pro-1tb-silver-sim/featured.jpg",
+        "slug": "iphone-17-pro-1tb-silver-sim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 256GB Orange Titanium",
+        "short_desc": "Большой экран 6.9 и оранжевый титан с физической SIM-картой.",
+        "price": 129900,
+        "image": "/images/products/apple/iphone-17-pro-max-orange-sim/featured.jpg",
+        "slug": "iphone-17-pro-max-orange-sim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 256GB Silver Titanium",
+        "short_desc": "Флагманский Pro Max в серебре с поддержкой физической SIM.",
+        "price": 129900,
+        "image": "/images/products/apple/iphone-17-pro-max-silver-sim/featured.jpg",
+        "slug": "iphone-17-pro-max-silver-sim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 256GB Blue Titanium",
+        "short_desc": "Синий титановый Pro Max с максимальным дисплеем и физической SIM.",
+        "price": 129900,
+        "image": "/images/products/apple/iphone-17-pro-max-blue-sim/featured.jpg",
+        "slug": "iphone-17-pro-max-blue-sim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 512GB Orange Titanium",
+        "short_desc": "Мощная конфигурация 512GB в оранжевом титане с физической SIM.",
+        "price": 159900,
+        "image": "/images/products/apple/iphone-17-pro-max-512-orange-sim/featured.jpg",
+        "slug": "iphone-17-pro-max-512-orange-sim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 512GB Silver Titanium",
+        "short_desc": "Полтерабайта памяти в серебристом Pro Max с физической SIM.",
+        "price": 159900,
+        "image": "/images/products/apple/iphone-17-pro-max-512-silver-sim/featured.jpg",
+        "slug": "iphone-17-pro-max-512-silver-sim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 512GB Blue Titanium",
+        "short_desc": "Синий титановый Pro Max с 512GB и поддержкой физической SIM.",
+        "price": 159900,
+        "image": "/images/products/apple/iphone-17-pro-max-512-blue-sim/featured.jpg",
+        "slug": "iphone-17-pro-max-512-blue-sim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 1TB Orange Titanium",
+        "short_desc": "Терабайт памяти в премиальном оранжевом корпусе с физической SIM.",
+        "price": 169900,
+        "image": "/images/products/apple/iphone-17-pro-max-1tb-orange-sim/featured.jpg",
+        "slug": "iphone-17-pro-max-1tb-orange-sim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 1TB Blue Titanium",
+        "short_desc": "Максимальная память 1TB в синем титане с физической SIM-картой.",
+        "price": 169900,
+        "image": "/images/products/apple/iphone-17-pro-max-1tb-blue-sim/featured.jpg",
+        "slug": "iphone-17-pro-max-1tb-blue-sim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 1TB Silver Titanium",
+        "short_desc": "Топовая конфигурация 1TB в серебристом титане с физической SIM.",
+        "price": 179900,
+        "image": "/images/products/apple/iphone-17-pro-max-1tb-silver-sim/featured.jpg",
+        "slug": "iphone-17-pro-max-1tb-silver-sim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro 256GB Blue Titanium (eSIM)",
+        "short_desc": "Apple iPhone 17 Pro с eSIM в синем титановом корпусе.",
+        "price": 109900,
+        "image": "/images/products/apple/iphone-17-pro-blue-esim/featured.jpg",
+        "slug": "iphone-17-pro-blue-esim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro 256GB Silver Titanium (eSIM)",
+        "short_desc": "Серебристый iPhone 17 Pro с поддержкой только eSIM.",
+        "price": 109900,
+        "image": "/images/products/apple/iphone-17-pro-silver-esim/featured.jpg",
+        "slug": "iphone-17-pro-silver-esim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro 256GB Orange Titanium (eSIM)",
+        "short_desc": "Оранжевый титан и современная технология eSIM.",
+        "price": 109900,
+        "image": "/images/products/apple/iphone-17-pro-orange-esim/featured.jpg",
+        "slug": "iphone-17-pro-orange-esim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro 512GB Orange Titanium (eSIM)",
+        "short_desc": "Удвоенная память 512GB с eSIM в оранжевом титане.",
+        "price": 129900,
+        "image": "/images/products/apple/iphone-17-pro-512-orange-esim/featured.jpg",
+        "slug": "iphone-17-pro-512-orange-esim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro 512GB Blue Titanium (eSIM)",
+        "short_desc": "Синий титановый iPhone 17 Pro с 512GB и eSIM.",
+        "price": 129900,
+        "image": "/images/products/apple/iphone-17-pro-512-blue-esim/featured.jpg",
+        "slug": "iphone-17-pro-512-blue-esim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro 512GB Silver Titanium (eSIM)",
+        "short_desc": "Просторная память 512GB в серебре с технологией eSIM.",
+        "price": 129900,
+        "image": "/images/products/apple/iphone-17-pro-512-silver-esim/featured.jpg",
+        "slug": "iphone-17-pro-512-silver-esim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro 1TB Orange Titanium (eSIM)",
+        "short_desc": "Терабайт памяти для профессионалов с eSIM.",
+        "price": 149900,
+        "image": "/images/products/apple/iphone-17-pro-1tb-orange-esim/featured.jpg",
+        "slug": "iphone-17-pro-1tb-orange-esim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro 1TB Silver Titanium (eSIM)",
+        "short_desc": "Максимальная конфигурация 1TB в серебре с eSIM.",
+        "price": 149900,
+        "image": "/images/products/apple/iphone-17-pro-1tb-silver-esim/featured.jpg",
+        "slug": "iphone-17-pro-1tb-silver-esim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 256GB Orange Titanium (eSIM)",
+        "short_desc": "Большой экран Pro Max с eSIM в оранжевом титане.",
+        "price": 119900,
+        "image": "/images/products/apple/iphone-17-pro-max-orange-esim/featured.jpg",
+        "slug": "iphone-17-pro-max-orange-esim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 256GB Blue Titanium (eSIM)",
+        "short_desc": "Синий титановый Pro Max с технологией eSIM.",
+        "price": 119900,
+        "image": "/images/products/apple/iphone-17-pro-max-blue-esim/featured.jpg",
+        "slug": "iphone-17-pro-max-blue-esim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 256GB Silver Titanium (eSIM)",
+        "short_desc": "Серебристый флагман с eSIM и дисплеем 6.9 дюймов.",
+        "price": 119900,
+        "image": "/images/products/apple/iphone-17-pro-max-silver-esim/featured.jpg",
+        "slug": "iphone-17-pro-max-silver-esim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 512GB Orange Titanium (eSIM)",
+        "short_desc": "Мощная конфигурация 512GB с eSIM в оранжевом титане.",
+        "price": 139900,
+        "image": "/images/products/apple/iphone-17-pro-max-512-orange-esim/featured.jpg",
+        "slug": "iphone-17-pro-max-512-orange-esim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 512GB Blue Titanium (eSIM)",
+        "short_desc": "Синий титановый Pro Max с 512GB и поддержкой eSIM.",
+        "price": 139900,
+        "image": "/images/products/apple/iphone-17-pro-max-512-blue-esim/featured.jpg",
+        "slug": "iphone-17-pro-max-512-blue-esim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 512GB Silver Titanium (eSIM)",
+        "short_desc": "Полтерабайта памяти в серебристом Pro Max с eSIM.",
+        "price": 139900,
+        "image": "/images/products/apple/iphone-17-pro-max-512-silver-esim/featured.jpg",
+        "slug": "iphone-17-pro-max-512-silver-esim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 1TB Blue Titanium (eSIM)",
+        "short_desc": "Терабайт памяти в синем титане с технологией eSIM.",
+        "price": 155900,
+        "image": "/images/products/apple/iphone-17-pro-max-1tb-blue-esim/featured.jpg",
+        "slug": "iphone-17-pro-max-1tb-blue-esim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 1TB Orange Titanium (eSIM)",
+        "short_desc": "Максимальная память 1TB в оранжевом титане с eSIM.",
+        "price": 155900,
+        "image": "/images/products/apple/iphone-17-pro-max-1tb-orange-esim/featured.jpg",
+        "slug": "iphone-17-pro-max-1tb-orange-esim"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 1TB Silver Titanium (eSIM)",
+        "short_desc": "Топовая конфигурация 1TB в серебре с поддержкой eSIM.",
+        "price": 155900,
+        "image": "/images/products/apple/iphone-17-pro-max-1tb-silver-esim/featured.jpg",
+        "slug": "iphone-17-pro-max-1tb-silver-esim"
     }
 ]

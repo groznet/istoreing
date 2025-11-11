@@ -46,7 +46,7 @@
     
     <!-- Logo -->
     <a href="/" class="flex items-center space-x-2">
-      <img src="images/logo.png" alt="Istoring Logo" class="h-10 w-auto">
+      <img src="images/logo.png" alt="Istoring Logo" class="w-auto">
     </a>
 
     <!-- Navigation -->
@@ -122,55 +122,495 @@
 <!-- END SECTION: Hero with main offer -->
 
 <!-- START SECTION: Popular Products / Top Picks -->
-<section class="bg-white py-16">
+<section class="bg-gradient-to-b from-gray-50 to-white py-16">
     <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-gray-800 text-center mb-12">
-            Популярные товары
-        </h2>
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                Популярные товары
+            </h2>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                Самые востребованные модели iPhone по выгодным ценам с рассрочкой
+            </p>
+        </div>
 
         <!-- Product Grid -->
-        <div id="popular-product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"></div>
+        <div id="popular-product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Loading skeleton -->
+            <div class="animate-pulse bg-white rounded-lg shadow p-4">
+                <div class="bg-gray-200 h-48 rounded mb-4"></div>
+                <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                <div class="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
+                <div class="h-6 bg-gray-200 rounded w-1/2"></div>
+            </div>
+            <div class="animate-pulse bg-white rounded-lg shadow p-4">
+                <div class="bg-gray-200 h-48 rounded mb-4"></div>
+                <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                <div class="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
+                <div class="h-6 bg-gray-200 rounded w-1/2"></div>
+            </div>
+            <div class="animate-pulse bg-white rounded-lg shadow p-4 hidden sm:block">
+                <div class="bg-gray-200 h-48 rounded mb-4"></div>
+                <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                <div class="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
+                <div class="h-6 bg-gray-200 rounded w-1/2"></div>
+            </div>
+            <div class="animate-pulse bg-white rounded-lg shadow p-4 hidden lg:block">
+                <div class="bg-gray-200 h-48 rounded mb-4"></div>
+                <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                <div class="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
+                <div class="h-6 bg-gray-200 rounded w-1/2"></div>
+            </div>
+        </div>
 
+        <!-- View All Button -->
         <div class="mt-12 flex justify-center">
-            <a href="/catalog.html" class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
-                Смотреть весь каталог
+            <a href="/catalog.html" class="group inline-flex items-center gap-2 px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                <span>Смотреть весь каталог</span>
+                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
             </a>
         </div>
     </div>
 </section>
 
 <script>
-fetch('/data/products.json')
-    .then(res => res.json())
-    .then(products => {
-        console.log('Popular products:', products);
+// Popular Products Manager
+(function() {
+    'use strict';
 
-        // Optionally pick first 8 popular products
-        const popular = products.slice(0, 8);
+    const PopularProducts = {
+        container: null,
+        products: [],
 
-        const container = document.getElementById('popular-product-list');
-        container.innerHTML = popular.map(p => `
-            <div class="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden flex flex-col">
-                <div class="relative">
-                    <img src="${p.image}" alt="${p.name}" class="w-full object-cover">
-                    <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded">
-                        Новинка
-                    </span>
+        init() {
+            this.container = document.getElementById('popular-product-list');
+            if (!this.container) return;
+            
+            this.loadProducts();
+        },
+
+        async loadProducts() {
+            try {
+                const response = await fetch('/data/products.json');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const allProducts = await response.json();
+                console.log('Loaded products:', allProducts.length);
+
+                // Smart selection: mix of new and popular models
+                this.products = this.selectPopularProducts(allProducts);
+                
+                this.render();
+            } catch (error) {
+                console.error('Error loading products:', error);
+                this.renderError();
+            }
+        },
+
+        selectPopularProducts(products) {
+            // Prioritize:
+            // 1. iPhone 17 Pro models (newest flagships)
+            // 2. iPhone 16 Pro models
+            // 3. iPhone 17 regular
+            // 4. iPhone 16 regular
+            // 5. iPhone 15 series
+
+            const priority = {
+                '17 Pro Max': 10,
+                '17 Pro': 9,
+                '17 Air': 8,
+                '17': 7,
+                '16 Pro Max': 6,
+                '16 Pro': 5,
+                '16': 4,
+                '15 Pro Max': 3,
+                '15 Pro': 2,
+                '15': 1
+            };
+
+            // Score each product
+            const scored = products.map(p => {
+                let score = 0;
+                const name = p.name;
+
+                // Find matching priority
+                for (const [key, value] of Object.entries(priority)) {
+                    if (name.includes(key)) {
+                        score = value;
+                        break;
+                    }
+                }
+
+                // Boost physical SIM models slightly
+                if (name.includes('Physical SIM')) {
+                    score += 0.5;
+                }
+
+                // Boost mid-range storage (256GB, 512GB)
+                if (name.includes('256GB') || name.includes('512GB')) {
+                    score += 0.3;
+                }
+
+                return { product: p, score };
+            });
+
+            // Sort by score and take top 8
+            return scored
+                .sort((a, b) => b.score - a.score)
+                .slice(0, 8)
+                .map(item => item.product);
+        },
+
+        render() {
+            if (this.products.length === 0) {
+                this.renderEmpty();
+                return;
+            }
+
+            this.container.innerHTML = this.products.map(p => `
+                <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group transform hover:-translate-y-1">
+                    <!-- Image Container -->
+                    <div class="relative overflow-hidden bg-gray-50">
+                        <img 
+                            src="${p.image}" 
+                            alt="${p.name}" 
+                            class="w-full h-64 object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                            loading="lazy"
+                            onerror="this.src='/images/placeholder.jpg'"
+                        >
+                        
+                        <!-- Badges -->
+                        <div class="absolute top-3 left-3 flex flex-col gap-2">
+                            ${this.getBadge(p)}
+                        </div>
+
+                        <!-- Quick View on Hover -->
+                        <div class="absolute inset-0 group-hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center">
+                            <button 
+                                onclick="openProductModal('${p.slug}')" 
+                                class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold text-sm shadow-lg transform -translate-y-2 group-hover:translate-y-0"
+                            >
+                                Быстрый просмотр
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="p-4 flex flex-col flex-1">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2 line-clamp-2 min-h-[3.5rem]">
+                            ${p.name}
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2 flex-1">
+                            ${p.short_desc}
+                        </p>
+                        
+                        <!-- Price & Actions -->
+                        <div class="mt-auto">
+                            <div class="mb-3">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-2xl font-bold text-gray-800">
+                                        ${p.price.toLocaleString('ru-RU')} ₽
+                                    </span>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-1">
+                                    или ${Math.ceil(p.price / 12).toLocaleString('ru-RU')} ₽/мес
+                                </p>
+                            </div>
+                            
+                            <div class="flex gap-2">
+                                <button 
+                                    onclick="openProductModal('${p.slug}')" 
+                                    class="flex-1 px-3 py-2 bg-blue-600 text-white text-center rounded-lg hover:bg-blue-700 transition-colors text-sm font-semibold"
+                                >
+                                    Подробнее
+                                </button>
+                                <button 
+                                    onclick="addToCart('${p.slug}')"
+                                    class="px-3 py-2 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors text-sm font-semibold"
+                                    title="Добавить в корзину"
+                                >
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-4 flex flex-col flex-1">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">${p.name}</h3>
-                    <p class="text-gray-600 mb-4">${p.short_desc}</p>
-                    <div class="mt-auto flex items-center justify-between">
-                        <span class="text-xl font-bold text-gray-800">${p.price.toLocaleString('ru-RU')} ₽</span>
-                        <a href="/products/${p.slug}.html" class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">
-                            Подробнее
-                        </a>
+            `).join('');
+        },
+
+        getBadge(product) {
+            const badges = [];
+            const name = product.name;
+
+            // New badge for iPhone 17
+            if (name.includes('17')) {
+                badges.push('<span class="bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded shadow">Новинка</span>');
+            }
+
+            // eSIM badge
+            if (name.includes('eSIM')) {
+                badges.push('<span class="bg-blue-500 text-white text-xs font-semibold px-2 py-1 rounded shadow">eSIM</span>');
+            }
+
+            // Pro badge
+            if (name.includes('Pro Max')) {
+                badges.push('<span class="bg-purple-500 text-white text-xs font-semibold px-2 py-1 rounded shadow">Pro Max</span>');
+            } else if (name.includes('Pro')) {
+                badges.push('<span class="bg-purple-500 text-white text-xs font-semibold px-2 py-1 rounded shadow">Pro</span>');
+            }
+
+            return badges.join('');
+        },
+
+        renderError() {
+            this.container.innerHTML = `
+                <div class="col-span-full text-center py-12">
+                    <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <p class="text-gray-600 text-lg mb-4">Ошибка загрузки товаров</p>
+                    <button 
+                        onclick="location.reload()" 
+                        class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                    >
+                        Попробовать снова
+                    </button>
+                </div>
+            `;
+        },
+
+        renderEmpty() {
+            this.container.innerHTML = `
+                <div class="col-span-full text-center py-12">
+                    <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+                    </svg>
+                    <p class="text-gray-600 text-lg">Товары временно недоступны</p>
+                </div>
+            `;
+        }
+    };
+
+    // Simple cart function (you can implement full cart logic later)
+    window.addToCart = function(slug) {
+        // TODO: Implement cart logic
+        console.log('Adding to cart:', slug);
+        alert('Товар добавлен в корзину! (Функционал в разработке)');
+    };
+
+    // Product Modal Handler
+    window.openProductModal = function(slug) {
+        const product = PopularProducts.products.find(p => p.slug === slug);
+        if (!product) {
+            console.error('Product not found:', slug);
+            return;
+        }
+
+        // Create modal HTML
+        const modalHTML = `
+            <div id="product-modal" class="fixed inset-0 z-50 overflow-y-auto" style="animation: fadeIn 0.2s ease-out;">
+                <!-- Backdrop -->
+                <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity" onclick="closeProductModal()"></div>
+                
+                <!-- Modal Content -->
+                <div class="flex items-center justify-center min-h-screen p-4">
+                    <div class="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full mx-auto overflow-hidden" style="animation: slideUp 0.3s ease-out;">
+                        
+                        <!-- Close Button -->
+                        <button 
+                            onclick="closeProductModal()" 
+                            class="absolute top-4 right-4 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
+                        >
+                            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+
+                        <div class="grid md:grid-cols-2 gap-8 p-8">
+                            <!-- Left: Image -->
+                            <div class="flex items-center justify-center bg-gray-50 rounded-xl p-8">
+                                <img 
+                                    src="${product.image}" 
+                                    alt="${product.name}" 
+                                    class="w-full max-w-sm object-contain"
+                                >
+                            </div>
+
+                            <!-- Right: Details -->
+                            <div class="flex flex-col">
+                                <!-- Badges -->
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    ${PopularProducts.getBadge(product)}
+                                </div>
+
+                                <!-- Title -->
+                                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+                                    ${product.name}
+                                </h2>
+
+                                <!-- Description -->
+                                <p class="text-gray-600 mb-6 text-lg">
+                                    ${product.short_desc}
+                                </p>
+
+                                <!-- Key Features -->
+                                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                                    <h3 class="font-semibold text-gray-800 mb-3">Основные характеристики:</h3>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        ${getProductFeatures(product).map(f => `
+                                            <li class="flex items-center gap-2">
+                                                <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                                </svg>
+                                                <span>${f}</span>
+                                            </li>
+                                        `).join('')}
+                                    </ul>
+                                </div>
+
+                                <!-- Price -->
+                                <div class="border-t border-gray-200 pt-6 mb-6">
+                                    <div class="flex items-baseline gap-3 mb-2">
+                                        <span class="text-4xl font-bold text-gray-800">
+                                            ${product.price.toLocaleString('ru-RU')} ₽
+                                        </span>
+                                    </div>
+                                    <p class="text-gray-600">
+                                        или <span class="font-semibold text-blue-600">${Math.ceil(product.price / 12).toLocaleString('ru-RU')} ₽/мес</span> в рассрочку
+                                    </p>
+                                </div>
+
+                                <!-- Actions -->
+                                <div class="flex gap-3 mt-auto">
+                                    <button 
+                                        onclick="addToCart('${product.slug}')" 
+                                        class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl"
+                                    >
+                                        Добавить в корзину
+                                    </button>
+                                    <button 
+                                        onclick="buyNow('${product.slug}')" 
+                                        class="flex-1 bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl"
+                                    >
+                                        Купить сейчас
+                                    </button>
+                                </div>
+
+                                <!-- Contact Options -->
+                                <div class="mt-6 flex gap-3">
+                                    <a href="tel:+79991234567" class="flex-1 flex items-center justify-center gap-2 border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors text-sm">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                                        </svg>
+                                        Позвонить
+                                    </a>
+                                    <a href="https://wa.me/79991234567" target="_blank" class="flex-1 flex items-center justify-center gap-2 border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors text-sm">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                                        </svg>
+                                        WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        `).join('');
-    })
-    .catch(err => console.error('Ошибка загрузки популярных товаров:', err));
+
+            <style>
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                @keyframes slideUp {
+                    from { 
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+                    to { 
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            </style>
+        `;
+
+        // Insert modal into body
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        document.body.style.overflow = 'hidden';
+    };
+
+    window.closeProductModal = function() {
+        const modal = document.getElementById('product-modal');
+        if (modal) {
+            modal.remove();
+            document.body.style.overflow = '';
+        }
+    };
+
+    window.buyNow = function(slug) {
+        // TODO: Implement buy now logic
+        console.log('Buy now:', slug);
+        alert('Переход к оформлению заказа (Функционал в разработке)');
+    };
+
+    function getProductFeatures(product) {
+        const features = [];
+        const name = product.name;
+
+        // Extract storage
+        if (name.includes('128GB')) features.push('Память 128GB');
+        else if (name.includes('256GB')) features.push('Память 256GB');
+        else if (name.includes('512GB')) features.push('Память 512GB');
+        else if (name.includes('1TB')) features.push('Память 1TB');
+
+        // SIM type
+        if (name.includes('eSIM')) features.push('Поддержка eSIM');
+        else if (name.includes('Physical SIM')) features.push('Физическая SIM-карта');
+
+        // Model specific
+        if (name.includes('Pro Max')) {
+            features.push('Экран 6.9 дюймов');
+            features.push('Тройная камера Pro');
+        } else if (name.includes('Pro')) {
+            features.push('Экран 6.3 дюйма');
+            features.push('Тройная камера Pro');
+        } else {
+            features.push('Двойная камера');
+        }
+
+        // Common features
+        features.push('5G поддержка');
+        features.push('Face ID');
+        features.push('Быстрая зарядка');
+        features.push('Беспроводная зарядка');
+        
+        if (name.includes('17') || name.includes('16')) {
+            features.push('USB-C разъём');
+        }
+
+        if (name.includes('Pro')) {
+            features.push('ProMotion 120Hz');
+            features.push('Титановый корпус');
+        }
+
+        return features;
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => PopularProducts.init());
+    } else {
+        PopularProducts.init();
+    }
+})();
 </script>
 
 <!-- END SECTION: Popular Products / Top Picks -->
@@ -344,7 +784,7 @@ fetch('/data/popular_products.json')
     <!-- Logo & About -->
     <div class="space-y-4">
       <a href="/" class="flex items-center space-x-2">
-        <img src="images/logo.png" alt="Istoring Logo" class="h-10 w-auto">
+        <img src="images/logo.png" alt="Istoring Logo" class="w-auto">
         <span class="text-xl font-semibold text-white">Istoring</span>
       </a>
       <p class="text-gray-400 text-sm">
@@ -369,8 +809,8 @@ fetch('/data/popular_products.json')
     <div>
       <h3 class="text-white font-semibold mb-4">Контакты</h3>
       <ul class="space-y-2 text-sm">
-        <li>Телефон: <a href="tel:+79991234567" class="hover:text-white transition">+7 (999) 123-45-67</a></li>
-        <li>WhatsApp: <a href="https://wa.me/79991234567" target="_blank" class="hover:text-white transition">Написать</a></li>
+        <li>Телефон: <a href="tel:+79286070606" class="hover:text-white transition">+7 (999) 123-45-67</a></li>
+        <li>WhatsApp: <a href="https://wa.me/79286070606" target="_blank" class="hover:text-white transition">Написать</a></li>
         <li>Telegram: <a href="https://t.me/istoring_support" target="_blank" class="hover:text-white transition">Написать</a></li>
         <li>Email: <a href="mailto:info@istoring.ru" class="hover:text-white transition">info@istoring.ru</a></li>
       </ul>
@@ -383,6 +823,7 @@ fetch('/data/popular_products.json')
         <a href="#" class="hover:text-white transition"><img src="images/icons/facebook.png" alt="Facebook" class="h-5 w-5"></a>
         <a href="#" class="hover:text-white transition"><img src="images/icons/instagram.png" alt="Instagram" class="h-5 w-5"></a>
         <a href="#" class="hover:text-white transition"><img src="images/icons/telegram.png" alt="Telegram" class="h-5 w-5"></a>
+        <a href="https://wa.me/79286070606" target="_blank" class="hover:text-white transition"><img src="images/icons/whatsapp.png" alt="WhatsApp" class="h-5 w-5"></a>
       </div>
       <p class="text-gray-400 text-sm">
         Подпишитесь на новости: 

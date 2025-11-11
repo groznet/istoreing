@@ -3,8 +3,15 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+
 h1, h2, h3, h4, h5, h6, .heading {
     font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    @media (width >= 96rem) {
+        max-width: 80rem;
+    }
 }
 
 /* Colors as CSS variables for global use */
