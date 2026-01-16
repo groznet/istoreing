@@ -141,64 +141,88 @@
 <!-- END SECTION: Team / Staff -->
 
 <!-- START SECTION: Footer -->
-<footer class="bg-gray-900 text-gray-300 py-12">
-  <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
-
-    <!-- Logo & About -->
-    <div class="space-y-4">
-      <a href="/" class="flex items-center space-x-2">
-        <img src="images/logo.png" alt="Istoring Logo" class="w-auto">
-        <span class="text-xl font-semibold text-white">Istoring</span>
-      </a>
-      <p class="text-gray-400 text-sm">
-        Магазин мобильных телефонов с рассрочкой. Последние модели смартфонов с официальной гарантией и удобной оплатой.
-      </p>
+<footer class="bg-gray-900 text-white mt-16">
+    <div class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center mb-6">
+                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+                        <span class="text-white font-bold text-xl">I</span>
+                    </div>
+                    <span class="text-xl font-bold">Istoring</span>
+                </div>
+                <p class="text-gray-400 mb-6">Магазин телефонов в рассрочку. Современные устройства Apple с удобными условиями платежей.</p>
+                <div class="flex space-x-4">
+                    <a href="https://instagram.com/istoring" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-instagram text-2xl"></i>
+                    </a>
+                    <a href="https://vk.com/istoring" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-vk text-2xl"></i>
+                    </a>
+                    <a href="https://t.me/istoring" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-telegram text-2xl"></i>
+                    </a>
+                    <a href="https://youtube.com/@istoring" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-youtube text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-lg font-bold mb-6">Магазин</h3>
+                <ul class="space-y-3">
+                    <li><a href="/catalog.html" class="text-gray-400 hover:text-white">Каталог товаров</a></li>
+                    <li><a href="/promotions.html" class="text-gray-400 hover:text-white">Акции и скидки</a></li>
+                    <li><a href="/new-arrivals" class="text-gray-400 hover:text-white">Новинки</a></li>
+                    <li><a href="/top-products" class="text-gray-400 hover:text-white">Популярные товары</a></li>
+                    <li><a href="/reviews.html" class="text-gray-400 hover:text-white">Отзывы клиентов</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="text-lg font-bold mb-6">Информация</h3>
+                <ul class="space-y-3">
+                    <li><a href="/about.html" class="text-gray-400 hover:text-white">О магазине</a></li>
+                    <li><a href="/blog/" class="text-gray-400 hover:text-white">Блог</a></li>
+                    <li><a href="/faq.html" class="text-gray-400 hover:text-white">Вопросы и ответы</a></li>
+                    <li><a href="/contact.html" class="text-gray-400 hover:text-white">Контакты</a></li>
+                    <li><a href="/bank-details.html" class="text-gray-400 hover:text-white">Сервис и поддержка</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="text-lg font-bold mb-6">Контакты</h3>
+                <ul class="space-y-3 text-gray-400">
+                    <li class="flex items-start">
+                        <i class="fas fa-map-marker-alt mr-3 mt-1"></i>
+                        <span>г. Назрань, ул. Муталиева 17, ТЦ Алиф Молл, 1 этаж</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-phone mr-3"></i>
+                        <a href="tel:+79004567890" class="hover:text-white">+7 (900) 456-78-90</a>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fab fa-whatsapp mr-3"></i>
+                        <a href="https://wa.me/79286070606" class="hover:text-white">WhatsApp: +7 (928) 607-06-06</a>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-envelope mr-3"></i>
+                        <a href="mailto:info@istoring.ru" class="hover:text-white">info@istoring.ru</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2023 Istoring. ИП Газабиев Валид Вахидович. Все права защищены.</p>
+            <div class="mt-4 flex flex-col md:flex-row justify-center space-y-2 md:space-y-0 md:space-x-6">
+                <a href="/privacy.html" class="hover:text-white">Политика конфиденциальности</a>
+                <a href="/terms.html" class="hover:text-white">Условия использования</a>
+                <a href="#" class="text-white font-medium">Реквизиты</a>
+            </div>
+            <p class="mt-4 text-sm">ИНН 201100605102 | ОГРНИП 324200000050118</p>
+        </div>
     </div>
-
-    <!-- Navigation -->
-    <div>
-      <h3 class="text-white font-semibold mb-4">Меню</h3>
-      <ul class="space-y-2 text-sm">
-        <li><a href="/" class="hover:text-white transition">Главная</a></li>
-        <li><a href="/catalog.html" class="hover:text-white transition">Каталог</a></li>
-        <li><a href="/promotions.html" class="hover:text-white transition">Акции</a></li>
-        <li><a href="/blog/" class="hover:text-white transition">Блог</a></li>
-        <li><a href="/about.html" class="hover:text-white transition">О магазине</a></li>
-        <li><a href="/contact.html" class="hover:text-white transition">Контакты</a></li>
-      </ul>
-    </div>
-
-    <!-- Contact Info -->
-    <div>
-      <h3 class="text-white font-semibold mb-4">Контакты</h3>
-      <ul class="space-y-2 text-sm">
-        <li>Телефон: <a href="tel:+79286070606" class="hover:text-white transition">+7 (999) 123-45-67</a></li>
-        <li>WhatsApp: <a href="https://wa.me/79286070606" target="_blank" class="hover:text-white transition">Написать</a></li>
-        <li>Telegram: <a href="https://t.me/istoring_support" target="_blank" class="hover:text-white transition">Написать</a></li>
-        <li>Email: <a href="mailto:info@istoring.ru" class="hover:text-white transition">info@istoring.ru</a></li>
-      </ul>
-    </div>
-
-    <!-- Social & Newsletter -->
-    <div class="space-y-4">
-      <h3 class="text-white font-semibold mb-4">Следите за нами</h3>
-      <div class="flex space-x-4">
-        <a href="#" class="hover:text-white transition"><img src="images/icons/facebook.png" alt="Facebook" class="h-5 w-5"></a>
-        <a href="#" class="hover:text-white transition"><img src="images/icons/instagram.png" alt="Instagram" class="h-5 w-5"></a>
-        <a href="#" class="hover:text-white transition"><img src="images/icons/telegram.png" alt="Telegram" class="h-5 w-5"></a>
-        <a href="https://wa.me/79286070606" target="_blank" class="hover:text-white transition"><img src="images/icons/whatsapp.png" alt="WhatsApp" class="h-5 w-5"></a>
-      </div>
-      <p class="text-gray-400 text-sm">
-        Подпишитесь на новости: 
-        <a href="/subscribe" class="text-blue-500 hover:underline">Подписка</a>
-      </p>
-    </div>
-
-  </div>
-
-  <div class="mt-12 border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
-    &copy; 2025 Istoring. Все права защищены.
-  </div>
 </footer>
 <!-- END SECTION: Footer -->
     

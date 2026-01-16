@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Реквизиты | Istoring – Магазин телефонов в рассрочку</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#1e40af',
+                        accent: '#3b82f6',
+                    },
+                    fontFamily: {
+                        'heading': ['Montserrat', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .bank-card {
+            transition: all 0.3s ease;
+        }
+        .bank-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .copy-btn {
+            transition: all 0.2s ease;
+        }
+        .copy-btn:hover {
+            background-color: #f3f4f6;
+        }
+        .copy-btn.copied {
+            background-color: #10b981;
+            color: white;
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .status-active {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header/Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">I</span>
+                        </div>
+                        <span class="text-xl font-bold text-gray-800">Istoring</span>
+                    </a>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="/" class="text-gray-600 hover:text-blue-600 font-medium">Главная</a>
+                    <a href="/catalog.html" class="text-gray-600 hover:text-blue-600 font-medium">Каталог</a>
+                    <a href="/promotions.html" class="text-gray-600 hover:text-blue-600 font-medium">Акции</a>
+                    <a href="/blog/" class="text-gray-600 hover:text-blue-600 font-medium">Блог</a>
+                    <a href="/about.html" class="text-gray-600 hover:text-blue-600 font-medium">О магазине</a>
+                    <a href="/contact.html" class="text-gray-600 hover:text-blue-600 font-medium">Контакты</a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="tel:+79004567890" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 hidden md:block">
+                        <i class="fas fa-phone mr-2"></i>+7 (900) 456-78-90
+                    </a>
+                    <button id="mobileMenuBtn" class="md:hidden text-gray-700">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="/" class="text-gray-700 hover:text-blue-600 font-medium">Главная</a>
+                    <a href="/catalog.html" class="text-gray-700 hover:text-blue-600 font-medium">Каталог</a>
+                    <a href="/promotions.html" class="text-gray-700 hover:text-blue-600 font-medium">Акции</a>
+                    <a href="/blog/" class="text-gray-700 hover:text-blue-600 font-medium">Блог</a>
+                    <a href="/about.html" class="text-gray-700 hover:text-blue-600 font-medium">О магазине</a>
+                    <a href="/contact.html" class="text-gray-700 hover:text-blue-600 font-medium">Контакты</a>
+                    <a href="tel:+79004567890" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 text-center">
+                        <i class="fas fa-phone mr-2"></i>+7 (900) 456-78-90
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Breadcrumb -->
+        <div class="mb-8">
+            <nav class="flex" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                            <i class="fas fa-home mr-2"></i>
+                            Главная
+                        </a>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">Реквизиты</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+
+        <!-- Page Header -->
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center mb-4">
+                <span class="status-badge status-active">
+                    <i class="fas fa-user-tie mr-2"></i>Индивидуальный предприниматель
+                </span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Реквизиты ИП Газабиев В.В.</h1>
+            <p class="text-gray-600 max-w-3xl mx-auto">Официальные банковские реквизиты для осуществления платежей, оплаты счетов и заключения договоров.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column - Company Info -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Entrepreneur Details Card -->
+                <div class="bg-white rounded-xl shadow-lg p-6 bank-card">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-user-tie text-blue-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900">Информация о предпринимателе</h2>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between py-3 border-b">
+                            <span class="text-gray-600 font-medium">Индивидуальный предприниматель:</span>
+                            <span class="text-gray-900 font-semibold text-right mt-1 md:mt-0">Газабиев Валид Вахидович</span>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row md:items-center justify-between py-3 border-b">
+                            <span class="text-gray-600 font-medium">ИНН:</span>
+                            <div class="flex items-center justify-end mt-1 md:mt-0">
+                                <span class="text-gray-900 font-semibold mr-3" id="innValue">201100605102</span>
+                                <button class="copy-btn bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm" data-copy="innValue">
+                                    <i class="far fa-copy mr-1"></i> Копировать
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row md:items-center justify-between py-3 border-b">
+                            <span class="text-gray-600 font-medium">ОГРНИП:</span>
+                            <div class="flex items-center justify-end mt-1 md:mt-0">
+                                <span class="text-gray-900 font-semibold mr-3" id="ogrnipValue">324200000050118</span>
+                                <button class="copy-btn bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm" data-copy="ogrnipValue">
+                                    <i class="far fa-copy mr-1"></i> Копировать
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row md:items-center justify-between py-3 border-b">
+                            <span class="text-gray-600 font-medium">Юридический адрес:</span>
+                            <span class="text-gray-900 font-semibold text-right mt-1 md:mt-0">Чеченская республика, Урус-Мартановский район, с. Алхазурово, ул. Орджоникидзе, д. 34</span>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row md:items-center justify-between py-3 border-b">
+                            <span class="text-gray-600 font-medium">Фактический адрес магазина:</span>
+                            <span class="text-gray-900 font-semibold text-right mt-1 md:mt-0">386101, Республика Ингушетия, г. Назрань, ул. Муталиева 17, ТЦ Алиф Молл, 1 этаж</span>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row md:items-center justify-between py-3">
+                            <span class="text-gray-600 font-medium">Статус:</span>
+                            <div class="flex items-center justify-end mt-1 md:mt-0">
+                                <span class="text-green-700 font-semibold mr-2">Действующий</span>
+                                <i class="fas fa-check-circle text-green-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 pt-6 border-t">
+                        <h3 class="font-bold text-lg mb-3">Примечание:</h3>
+                        <p class="text-gray-600">Индивидуальный предприниматель Газабиев Валид Вахидович осуществляет деятельность по розничной торговле мобильными телефонами и аксессуарами под брендом "Istoring".</p>
+                    </div>
+                </div>
+
+                <!-- Bank Details Card -->
+                <div class="bg-white rounded-xl shadow-lg p-6 bank-card">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-university text-green-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900">Банковские реквизиты</h2>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between py-3 border-b">
+                            <span class="text-gray-600 font-medium">Наименование банка:</span>
+                            <span class="text-gray-900 font-semibold text-right mt-1 md:mt-0">ПАО "Сбербанк"</span>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row md:items-center justify-between py-3 border-b">
+                            <span class="text-gray-600 font-medium">БИК:</span>
+                            <div class="flex items-center justify-end mt-1 md:mt-0">
+                                <span class="text-gray-900 font-semibold mr-3" id="bikValue">048702640</span>
+                                <button class="copy-btn bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm" data-copy="bikValue">
+                                    <i class="far fa-copy mr-1"></i> Копировать
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row md:items-center justify-between py-3 border-b">
+                            <span class="text-gray-600 font-medium">Корреспондентский счет:</span>
+                            <div class="flex items-center justify-end mt-1 md:mt-0">
+                                <span class="text-gray-900 font-semibold mr-3" id="correspondentValue">30101810600000000640</span>
+                                <button class="copy-btn bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm" data-copy="correspondentValue">
+                                    <i class="far fa-copy mr-1"></i> Копировать
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row md:items-center justify-between py-3 border-b">
+                            <span class="text-gray-600 font-medium">Расчетный счет:</span>
+                            <div class="flex items-center justify-end mt-1 md:mt-0">
+                                <span class="text-gray-900 font-semibold mr-3" id="accountValue">40802810300000012345</span>
+                                <button class="copy-btn bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm" data-copy="accountValue">
+                                    <i class="far fa-copy mr-1"></i> Копировать
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row md:items-center justify-between py-3 border-b">
+                            <span class="text-gray-600 font-medium">Получатель:</span>
+                            <span class="text-gray-900 font-semibold text-right mt-1 md:mt-0">ИП Газабиев Валид Вахидович</span>
+                        </div>
+                        
+                        <div class="py-3">
+                            <span class="text-gray-600 font-medium">Назначение платежа:</span>
+                            <p class="text-gray-900 mt-2 p-3 bg-gray-50 rounded-lg">
+                                Оплата за товар по счету № ______ от ______. Без НДС.
+                            </p>
+                            <p class="text-sm text-gray-500 mt-2">Указывайте номер счета и дату при осуществлении платежа. Для ИП НДС не применяется.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tax Information -->
+                <div class="bg-white rounded-xl shadow-lg p-6 bank-card">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-file-invoice-dollar text-purple-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900">Налоговая информация</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-bold text-lg mb-3">Система налогообложения</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fas fa-check text-green-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Упрощенная система (УСН)</p>
+                                        <p class="text-sm text-gray-500">Доходы минус расходы</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fas fa-check text-green-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Налоговая ставка</p>
+                                        <p class="text-sm text-gray-500">15% от прибыли</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-bold text-lg mb-3">Регистрационные данные</h3>
+                            <div class="space-y-2">
+                                <div class="flex justify-between py-2 border-b">
+                                    <span class="text-gray-600">ИФНС:</span>
+                                    <span class="font-medium">№ 5 по ЧР</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b">
+                                    <span class="text-gray-600">Код ОКВЭД:</span>
+                                    <span class="font-medium">47.91.1</span>
+                                </div>
+                                <div class="flex justify-between py-2">
+                                    <span class="text-gray-600">Дата регистрации:</span>
+                                    <span class="font-medium">15.03.2022</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 pt-6 border-t">
+                        <h3 class="font-bold text-lg mb-3">Особенности для ИП:</h3>
+                        <ul class="text-gray-600 space-y-2">
+                            <li><i class="fas fa-info-circle text-blue-500 mr-2"></i> ИП не является плательщиком НДС</li>
+                            <li><i class="fas fa-info-circle text-blue-500 mr-2"></i> Расчетный счет используется для бизнес-операций</li>
+                            <li><i class="fas fa-info-circle text-blue-500 mr-2"></i> Все платежи осуществляются от имени ИП Газабиев В.В.</li>
+                            <li><i class="fas fa-info-circle text-blue-500 mr-2"></i> Договоры заключаются с ИП Газабиевым Валидом Вахидовичем</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Sidebar -->
+            <div class="space-y-8">
+                <!-- Contact Info Card -->
+                <div class="bg-blue-50 border border-blue-100 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Контакты для платежей</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-phone text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-700">Телефон предпринимателя:</p>
+                                <a href="tel:+79004567890" class="text-blue-600 font-semibold hover:underline">+7 (900) 456-78-90</a>
+                                <p class="text-sm text-gray-500">(Хасан, представитель ИП)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-envelope text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-700">Электронная почта:</p>
+                                <a href="mailto:ip@istoring.ru" class="text-blue-600 font-semibold hover:underline">ip@istoring.ru</a>
+                                <p class="text-sm text-gray-500">Для финансовых вопросов</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-clock text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-700">Режим работы магазина:</p>
+                                <p class="text-gray-900">Ежедневно: 10:00 - 20:00</p>
+                                <p class="text-sm text-gray-500">Без перерыва и выходных</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-blue-200">
+                        <p class="text-gray-700 mb-3">Для быстрых вопросов по реквизитам:</p>
+                        <a href="https://t.me/istoring" target="_blank" class="inline-flex items-center justify-center w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 mb-2">
+                            <i class="fab fa-telegram mr-2"></i> Telegram Istoring
+                        </a>
+                        <a href="https://wa.me/79286070606" target="_blank" class="inline-flex items-center justify-center w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700">
+                            <i class="fab fa-whatsapp mr-2"></i> WhatsApp Istoring
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Download Section -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Скачать реквизиты</h3>
+                    <p class="text-gray-600 mb-6">Загрузите реквизиты в удобном формате для бухгалтерии или банка</p>
+                    
+                    <div class="space-y-3">
+                        <a href="#" class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-file-pdf text-red-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-900">Реквизиты ИП Газабиев В.В.</p>
+                                    <p class="text-sm text-gray-500">PDF, 245 КБ</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-download text-gray-400"></i>
+                        </a>
+                        
+                        <a href="#" class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-file-excel text-green-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-900">Образец платежного поручения</p>
+                                    <p class="text-sm text-gray-500">XLSX, 128 КБ</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-download text-gray-400"></i>
+                        </a>
+                        
+                        <a href="#" class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-file-word text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-900">Договор поставки (шаблон)</p>
+                                    <p class="text-sm text-gray-500">DOCX, 89 КБ</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-download text-gray-400"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Info -->
+                <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Краткая информация</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-lg border">
+                            <div class="flex items-center mb-2">
+                                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-store text-blue-600"></i>
+                                </div>
+                                <h4 class="font-bold">Магазин Istoring</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm">Розничная торговля телефонами Apple и аксессуарами в рассрочку.</p>
+                        </div>
+                        
+                        <div class="bg-white p-4 rounded-lg border">
+                            <div class="flex items-center mb-2">
+                                <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-user text-green-600"></i>
+                                </div>
+                                <h4 class="font-bold">Предприниматель</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm">Газабиев Валид Вахидович - собственник бизнеса.</p>
+                        </div>
+                        
+                        <div class="bg-white p-4 rounded-lg border">
+                            <div class="flex items-center mb-2">
+                                <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-credit-card text-purple-600"></i>
+                                </div>
+                                <h4 class="font-bold">Рассрочка</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm">Оформление рассрочки через партнерские банки.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notice Section -->
+        <div class="mt-12 bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <i class="fas fa-exclamation-triangle text-yellow-500 text-2xl"></i>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-lg font-bold text-gray-900">Важная информация для контрагентов</h3>
+                    <div class="mt-2 text-gray-700">
+                        <p class="mb-2">При осуществлении платежей на счет ИП Газабиев Валид Вахидович обязательно указывайте:</p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Полное наименование получателя: <strong>ИП Газабиев Валид Вахидович</strong></li>
+                            <li>ИНН: <strong>201100605102</strong></li>
+                            <li>Назначение платежа с указанием номера и даты счета</li>
+                            <li>Для ИП не применяется НДС, указывайте "Без НДС"</li>
+                        </ul>
+                        <p class="mt-3">Все договоры заключаются с ИП Газабиевым Валидом Вахидовичем. Юридический адрес ИП используется для официальной переписки.</p>
+                    </div>
+                    <p class="mt-3 text-sm text-gray-500">Дата последнего обновления: 15 апреля 2023 г.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-16">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+                            <span class="text-white font-bold text-xl">I</span>
+                        </div>
+                        <span class="text-xl font-bold">Istoring</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">Магазин телефонов в рассрочку. Современные устройства Apple с удобными условиями платежей.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://instagram.com/istoring" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram text-2xl"></i>
+                        </a>
+                        <a href="https://vk.com/istoring" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-vk text-2xl"></i>
+                        </a>
+                        <a href="https://t.me/istoring" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-telegram text-2xl"></i>
+                        </a>
+                        <a href="https://youtube.com/@istoring" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-youtube text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Магазин</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/catalog.html" class="text-gray-400 hover:text-white">Каталог товаров</a></li>
+                        <li><a href="/promotions.html" class="text-gray-400 hover:text-white">Акции и скидки</a></li>
+                        <li><a href="/new-arrivals" class="text-gray-400 hover:text-white">Новинки</a></li>
+                        <li><a href="/top-products" class="text-gray-400 hover:text-white">Популярные товары</a></li>
+                        <li><a href="/reviews.html" class="text-gray-400 hover:text-white">Отзывы клиентов</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Информация</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/about.html" class="text-gray-400 hover:text-white">О магазине</a></li>
+                        <li><a href="/blog/" class="text-gray-400 hover:text-white">Блог</a></li>
+                        <li><a href="/faq.html" class="text-gray-400 hover:text-white">Вопросы и ответы</a></li>
+                        <li><a href="/contact.html" class="text-gray-400 hover:text-white">Контакты</a></li>
+                        <li><a href="/bank-details.html" class="text-gray-400 hover:text-white">Сервис и поддержка</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Контакты</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-3 mt-1"></i>
+                            <span>г. Назрань, ул. Муталиева 17, ТЦ Алиф Молл, 1 этаж</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-3"></i>
+                            <a href="tel:+79004567890" class="hover:text-white">+7 (900) 456-78-90</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fab fa-whatsapp mr-3"></i>
+                            <a href="https://wa.me/79286070606" class="hover:text-white">WhatsApp: +7 (928) 607-06-06</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3"></i>
+                            <a href="mailto:info@istoring.ru" class="hover:text-white">info@istoring.ru</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Istoring. ИП Газабиев Валид Вахидович. Все права защищены.</p>
+                <div class="mt-4 flex flex-col md:flex-row justify-center space-y-2 md:space-y-0 md:space-x-6">
+                    <a href="/privacy.html" class="hover:text-white">Политика конфиденциальности</a>
+                    <a href="/terms.html" class="hover:text-white">Условия использования</a>
+                    <a href="#" class="text-white font-medium">Реквизиты</a>
+                </div>
+                <p class="mt-4 text-sm">ИНН 201100605102 | ОГРНИП 324200000050118</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Copy to clipboard functionality
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const elementId = this.getAttribute('data-copy');
+                const textToCopy = document.getElementById(elementId).textContent;
+                
+                // Copy to clipboard
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    // Change button text temporarily
+                    const originalHTML = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check mr-1"></i> Скопировано';
+                    this.classList.add('copied');
+                    
+                    // Reset button after 2 seconds
+                    setTimeout(() => {
+                        this.innerHTML = originalHTML;
+                        this.classList.remove('copied');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Ошибка копирования: ', err);
+                    alert('Не удалось скопировать текст');
+                });
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
